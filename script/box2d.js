@@ -18,14 +18,14 @@ var box2d = {
         box2d.world = new  b2World(gravity,allowsleep);
 
         //初始化box2d-debug绘制环境
-        var debugcontext = document.getElementById('debugcanvas').getContext('2d');
-        var debugdraw = new b2DebugDraw;
-        debugdraw.SetSprite(debugcontext);
-        debugdraw.SetDrawScale(box2d.scale);
-        debugdraw.SetFillAlpha(0.3);
-        debugdraw.SetLineThickness(1.0);
-        debugdraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
-        box2d.world.SetDebugDraw(debugdraw);
+        var debugContext = document.getElementById('debugcanvas').getContext('2d');
+        var debugDraw = new b2DebugDraw();
+        debugDraw.SetSprite(debugContext);
+        debugDraw.SetDrawScale(box2d.scale);
+        debugDraw.SetFillAlpha(0.3);
+        debugDraw.SetLineThickness(1.0);
+        debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+        box2d.world.SetDebugDraw(debugDraw);
     },
     createRectangle:function (entity,definition) {
         var bodydef = new b2BodyDef;
@@ -72,12 +72,12 @@ var box2d = {
         body.SetUserData(entity);
         return body;
     },
-    // step:function (timestep) {
-    //     if(timestep>1/30){
-    //         timestep = 1/30;
-    //     }
-    //     box2d.world.Step(timestep,8,3);
-    // }
+    step:function (timestep) {
+        if(timestep>1/30){
+            timestep = 1/30;
+        }
+        box2d.world.Step(timestep,8,3);
+    }
 }
 
 
