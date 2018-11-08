@@ -82,6 +82,7 @@ var game = {
 
     },
     drawAllBodies:function(){
+        box2d.world.DrawDebugData();
         for (var body = box2d.world.GetBodyList();body;body = body.GetNext()){
             var entity = body.GetUserData();
             if(entity){

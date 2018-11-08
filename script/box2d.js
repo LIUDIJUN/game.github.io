@@ -15,7 +15,16 @@ var box2d = {
     init:function () {
         var gravity = new b2Vec2(0,9.8);
         var allowsleep = true;
-        world = new  b2World(gravity,allowsleep);
+        box2d.world = new  b2World(gravity,allowsleep);
+
+        //初始化box2d-debug绘制环境
+        var debugdraw = new b2DebugDraw;
+        debugdraw.SetSprite(debugcontext);
+        debugdraw.SetDrawScale(box2d.scale);
+        debugdraw.SetFillAlpha(0.3);
+        debugdraw.SetLineThickness(1.0);
+        debugdraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+        box2d.world.SetDebugDraw(debugdraw);
     },
     createRectangle:function (entity,definition) {
         var bodydef = new b2BodyDef;
@@ -35,7 +44,7 @@ var box2d = {
         fixtureDef.shape = new b2PolygonShape;
         fixtureDef.shape.SetAsBox(entity,entity);
 
-        var body =world.CreateBody(bodydef);
+        var body =box2d.world.CreateBody(bodydef);
         var fixture = body.CreateFixture(fixtureDef);
         body.SetUserData(entity);
         return body;
@@ -57,7 +66,7 @@ var box2d = {
 
         fixtureDef.shape = new b2CircleShape(entity);
 
-        var body =world.CreateBody(bodydef);
+        var body =box2d.world.CreateBody(bodydef);
         var fixture = body.CreateFixture(fixtureDef);
         body.SetUserData(entity);
         return body;
@@ -66,19 +75,8 @@ var box2d = {
     //     if(timestep>1/30){
     //         timestep = 1/30;
     //     }
-    //     world.Step(timeStep,8,3);
+    //     box2d.world.Step(timestep,8,3);
     // }
 }
 
-//
-// function steupDebugDraw() {
-//     context = document.getElementById('gamecanvas').getContext('2d');
-//     var debugDraw = new b2DebugDraw();
-//     debugDraw.SetSprite(context);
-//     debugDraw.SetDrawScale(scale);
-//     debugDraw.SetLineThickness(1.0);
-//     debugDraw.SetFillAlpha(0.3);
-//     debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
-//     world.SetDebugDraw(debugDraw);
-// }
 
