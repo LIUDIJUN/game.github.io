@@ -82,7 +82,7 @@ var game = {
 
     },
     drawAllBodies:function(){
-        for (var body = world.GetBodyList();body;body = body.GetNext()){
+        for (var body = box2d.world.GetBodyList();body;body = body.GetNext()){
             var entity = body.GetUserData();
             if(entity){
                 entities.draw(entity,body.GetPosition(),body.GetAngle())
