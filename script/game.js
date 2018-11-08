@@ -82,7 +82,12 @@ var game = {
 
     },
     drawAllBodies:function(){
+<<<<<<< HEAD
         for (var body = world.GetBodyList();body;body = body.GetNext()){
+=======
+        box2d.world.DrawDebugData();
+        for (var body = box2d.world.GetBodyList();body;body = body.GetNext()){
+>>>>>>> parent of ac81950... 无法绘制debug
             var entity = body.GetUserData();
             if(entity){
                 entities.draw(entity,body.GetPosition(),body.GetAngle())
