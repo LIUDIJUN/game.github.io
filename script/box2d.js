@@ -18,6 +18,7 @@ var box2d = {
         box2d.world = new  b2World(gravity,allowsleep);
 
         //初始化box2d-debug绘制环境
+        var debugcontext = document.getElementById('debugcanvas').getContext('2d');
         var debugdraw = new b2DebugDraw;
         debugdraw.SetSprite(debugcontext);
         debugdraw.SetDrawScale(box2d.scale);
